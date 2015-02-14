@@ -12,7 +12,7 @@
       var html = [
       "<div class='form-inline control_bar'>",
       "<div class='form-group'>",
-      "<label>Search Bar</lable>",
+      "<label>Search Bar</label>",
       "<input class='form-control' placeholder='search term'>",
       "</div>",
       "</div>",

@@ -21,6 +21,11 @@ textarea {
   padding: 20px;
 }
 
+.show-grid {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
 .wheel_container {
   display: none;
   text-align: center;
