@@ -2,7 +2,7 @@
   define(['models/model'], function (Model) {
     function Collection (options) {
       if (!options)
-        return;
+        options = {};
       this.models = [];
       this.urlRoot = options.urlRoot || 'http://api.5min.com/search/';
       this.term = options.term || 'obama';
@@ -22,7 +22,7 @@
       request.onreadystatechange = function () {
         if (request.readyState == 4) {
           if (request.status == 200) {
-            if (options && options.remove)
+            if (options && options.remove) 
               copy.models = [];
             tmp = JSON.parse(request.response);
             items = tmp.items;

@@ -33,7 +33,7 @@
       this.dom.addEventListener("click", function (e) {
         var target = e.target;
         e.preventDefault();
-        if (target.tagName == 'A') {console.log("close");
+        if (target.tagName == 'A') {
           copy.close();
         }
       });
@@ -41,6 +41,7 @@
 
     VideoPlayView.prototype.close = function () {
       this.dom.classList.remove("show");
+      this.dom.innerHTML = "";
     };
 
     return VideoPlayView;

@@ -22,7 +22,7 @@ textarea {
   margin-bottom: 20px;
 }
 
-/*.wheel_container {
+.wheel_container {
   display: none;
   text-align: center;
 }
@@ -30,7 +30,7 @@ textarea {
 .wheel_container.active {
   display: block;
 }
-*/
+
 .control_bar {
   text-align: center;
   margin: 10px 0;
@@ -48,7 +48,7 @@ textarea {
 
 .video {
   position: fixed;
-  top: 30%;
+  top: 20%;
 }
 
 .player_container.show {
