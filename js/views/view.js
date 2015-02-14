@@ -1,5 +1,5 @@
 (function () {
-  define([], function () {
+  define(['utils/events'], function (Events) {
     function View (options) {
       if (options && options.dom)
         this.dom = options.dom
@@ -8,6 +8,9 @@
       if (options)
         this.model = options.model;
     }
+
+    View.prototype = new Events();
+    View.prototype.constructor = View;
 
     View.prototype.render = function () {};
 

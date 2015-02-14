@@ -7,10 +7,6 @@ textarea {
   resize: none;
 }
 
-.video_wrap {
-  text-align: center;
-}
-
 .mask img {
   display: block;
   margin: 0 auto;
@@ -26,7 +22,7 @@ textarea {
   margin-bottom: 20px;
 }
 
-.wheel_container {
+/*.wheel_container {
   display: none;
   text-align: center;
 }
@@ -34,8 +30,27 @@ textarea {
 .wheel_container.active {
   display: block;
 }
-
+*/
 .control_bar {
   text-align: center;
   margin: 10px 0;
+}
+
+.player_container {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.7);
+  top: 0;
+  left: 0;
+}
+
+.video {
+  position: fixed;
+  top: 30%;
+}
+
+.player_container.show {
+  display: block;
 }

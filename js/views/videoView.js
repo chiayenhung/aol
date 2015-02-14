@@ -37,11 +37,11 @@
 
     VideoView.prototype.setHandlers = function () {
       var copy = this;
-      this.dom.addEventListener("click", function () {
-        console.log(copy.model.attrs.id);
-      });
-      this.dom.addEventListener("click", function () {
-        console.log(copy.model.attrs.title);
+      this.dom.addEventListener("click", function (e) {
+        var target = e.target;
+        if (e.target.tagName == 'IMG') {
+          copy.trigger("play", copy.model);
+        }
       });
     };
 

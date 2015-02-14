@@ -15,6 +15,16 @@
           hour = '0' + hour;
         return hour + ":" + min + ":" + second;
       },
+
+      extend: function (obj1, obj2) {
+        var key;
+        if (!obj1)
+          return;
+        for (key in obj2) {
+          if (obj2.hasOwnProperty(key))
+            obj1[key] = obj2[key];
+        }
+      },
     };
 
     return utils;

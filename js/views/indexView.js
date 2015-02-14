@@ -1,5 +1,5 @@
 (function () {
-  define(['utils/MyQuery', 'views/view', 'views/videoView'], function (MyQ, View, VideoView) {
+  define(['utils/MyQuery', 'views/view', 'views/videoView', 'views/videoPlayView'], function (MyQ, View, VideoView, VideoPlayView) {
     function IndexView (options) {
       View.call(this, options);
       this.videos = options.videos;
@@ -17,14 +17,21 @@
       "</div>",
       "</div>",
       "<div class='videos_container'>",
-      "</div>"
+      "</div>",
+      // "<div class='player_container'>",
+      // "</div>"
       ];
       return html.join("");
     };
 
     IndexView.prototype.render = function () {
-      var videos_container;
+      var copy = this,
+          videos_container, player_container;
       this.dom.innerHTML = this.template();
+      player_container = MyQ.query(".player_container")[0];
+      this.videoPlayView = new VideoPlayView({
+        dom: player_container
+      });
       videos_container = MyQ.query(".videos_container", this.dom)[0];
       this.videos.models.forEach(function (video) {
         var videoView = new VideoView({
@@ -33,6 +40,10 @@
         videoView.render();
         videoView.setHandlers();
         videos_container.appendChild(videoView.dom);
+        videoView.off("play").on("play", function (model) {
+          console.log("play", model);
+          copy.videoPlayView.render(model);
+        });
       });
     };
 
