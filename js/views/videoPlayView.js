@@ -9,6 +9,11 @@
 
     VideoPlayView.prototype.template = function (model) {
       var html = [
+      "<div class='span1 offset10'>",
+      "<a class='close_modal' href='#'>",
+      "X",
+      "</a>",
+      "</div>",
       "<video class='video span4 offset4' height='240' src='",
       model.get("videoUrl"),
       "' controls>",
@@ -21,6 +26,21 @@
       this.dom.innerHTML = this.template(model);
       this.dom.classList.add("show");
       this.dom.style.height = document.body.scrollHeight + "px";
+    };
+
+    VideoPlayView.prototype.setHandlers = function () {
+      var copy = this;
+      this.dom.addEventListener("click", function (e) {
+        var target = e.target;
+        e.preventDefault();
+        if (target.tagName == 'A') {console.log("close");
+          copy.close();
+        }
+      });
+    };
+
+    VideoPlayView.prototype.close = function () {
+      this.dom.classList.remove("show");
     };
 
     return VideoPlayView;

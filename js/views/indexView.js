@@ -28,10 +28,13 @@
       var copy = this,
           videos_container, player_container;
       this.dom.innerHTML = this.template();
+      
       player_container = MyQ.query(".player_container")[0];
       this.videoPlayView = new VideoPlayView({
         dom: player_container
       });
+      this.videoPlayView.setHandlers();
+
       videos_container = MyQ.query(".videos_container", this.dom)[0];
       this.videos.models.forEach(function (video) {
         var videoView = new VideoView({
