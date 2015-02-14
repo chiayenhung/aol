@@ -4,13 +4,17 @@
       if (!options)
         return;
       this.models = [];
-      this.url = options.url || 'url';
+      this.urlRoot = options.urlRoot || 'http://api.5min.com/search/';
+      this.term = options.term || 'obama';
+      this.format = options.format || '/videos.json';
+      this.Model = Model;
     }
 
     Collection.prototype.fetch = function (options, callback) {
       var request,
           copy = this,
-          items, tmp;
+          items, tmp,
+          url;
       if (window.XMLHttpRequest)
         request = new XMLHttpRequest();
       else
@@ -18,9 +22,13 @@
       request.onreadystatechange = function () {
         if (request.readyState == 4) {
           if (request.status == 200) {
+            if (options && options.remove)
+              copy.models = [];
             tmp = JSON.parse(request.response);
             items = tmp.items;
-            copy.models = items
+            items.forEach(function (item) {
+              copy.models.push(new copy.Model(item));
+            });
             callback.call(copy, null, copy);
           }
           else
@@ -28,7 +36,11 @@
         }
       };
 
-      request.open("GET", copy.url, true);
+      if (options.term)
+        url = copy.urlRoot + options.term + copy.format;
+      else
+        url = copy.urlRoot + copy.term + copy.format;
+      request.open("GET", url, true);
       request.send();
     };
 

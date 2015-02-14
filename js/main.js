@@ -1,9 +1,7 @@
 (function () {
 
   requirejs(['models/videos'], function (Videos) {
-    var videos = new Videos({
-      url: "http://api.5min.com/search/obama/videos.json"
-    });
+    var videos = new Videos({});
     videos.fetch({}, function (err, response) {
       if (err)
         console.error();
