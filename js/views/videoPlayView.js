@@ -10,9 +10,11 @@
     VideoPlayView.prototype.template = function (model) {
       var html = [
       "<div class='span1 offset10'>",
-      "<a class='close_modal' href='#'>",
-      "X",
-      "</a>",
+      "<button type='button' class='close' aria-label='Close'>",
+      "<span aria-hidden='true' class='closeBtn'>",
+      "&times;",
+      "</span>",
+      "</button>",
       "</div>",
       "<video class='video span4 offset4' height='240' src='",
       model.get("videoUrl"),
@@ -33,7 +35,7 @@
       this.dom.addEventListener("click", function (e) {
         var target = e.target;
         e.preventDefault();
-        if (target.tagName == 'A') {
+        if (target.tagName == 'SPAN' && target.classList.contains("closeBtn")) {
           copy.close();
         }
       });

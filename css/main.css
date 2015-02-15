@@ -8,8 +8,8 @@ textarea {
 }
 
 .mask img {
-  display: block;
-  margin: 0 auto;
+  /*display: block;*/
+  width: 100%;
 }
 
 .container {
@@ -55,8 +55,9 @@ textarea {
   display: block;
 }
 
-.close_modal {
+.close {
   position: fixed;
+  color: white;
   top: 10%;
   font-size: 30px;
 }

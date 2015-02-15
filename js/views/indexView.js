@@ -63,17 +63,19 @@
         var target = e.target;
         if (target.tagName == 'INPUT') {
           videos_container.innerHTML = "";
-          copy.load(true);
-          copy.videos.fetch({term: target.value, remove: true}, function (err, response) {
-            if (err)
-              console.error(err);
-            else {
-              copy.renderVideos();
-            }
-            copy.load(false);
-            if (copy.videos.models.length == 0)
-              videos_container.innerHTML = "<label class='text-error'>No videos found!</label>"
-          });
+          if (target.value) {            
+            copy.load(true);
+            copy.videos.fetch({term: target.value, remove: true}, function (err, response) {
+              if (err)
+                console.error(err);
+              else {
+                copy.renderVideos();
+              }
+              copy.load(false);
+              if (copy.videos.models.length == 0)
+                videos_container.innerHTML = "<label class='text-error'>No videos found!</label>"
+            });
+          }
         }
       });
     };
