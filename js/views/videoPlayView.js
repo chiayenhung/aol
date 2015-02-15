@@ -16,7 +16,7 @@
       "</div>",
       "<video class='video span4 offset4' height='240' src='",
       model.get("videoUrl"),
-      "' controls>",
+      "' controls autoplay>",
       "</video>"
       ];
       return html.join("");
