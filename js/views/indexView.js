@@ -39,10 +39,12 @@
       this.renderVideos();
     };
 
-    IndexView.prototype.renderVideos = function () {
+    IndexView.prototype.renderVideos = function (clear) {
       var copy = this,
           videos_container;
       videos_container = MyQ.query(".videos_container", this.dom)[0];
+      if (clear)
+        videos_container.innerHTML = "";
       this.videos.models.forEach(function (video) {
         var videoView = new VideoView({
           model: video
@@ -65,6 +67,7 @@
           videos_container.innerHTML = "";
           if (target.value) {            
             copy.load(true);
+            copy.videos.reset();
             copy.videos.fetch({term: target.value, remove: true}, function (err, response) {
               if (err)
                 console.error(err);
@@ -76,6 +79,26 @@
                 videos_container.innerHTML = "<label class='text-error'>No videos found!</label>"
             });
           }
+        }
+      });
+
+      document.addEventListener("mousewheel", function (e) {
+        var textarea = MyQ.query("INPUT")[0],
+            options = {};
+        if (window.pageYOffset + window.innerHeight + 100 > document.body.scrollHeight) {
+          options.term = textarea.value;
+          copy.load(true);
+          copy.videos.lazyLoad(options, function (err, response) {
+            if (err)
+              console.log(err);
+            else {
+              copy.renderVideos(true);
+              if (response.items.length == 0)
+                copy.load(false);
+              console.log(response.items.length)
+            }
+            copy.load(false);
+          });
         }
       });
     };

@@ -71,7 +71,7 @@
             return queryClass(node, queryStr.substring(1));
         }
         if (!node)
-          return document.getElementsByTagName(queryStr.substring(1));
+          return document.getElementsByTagName(queryStr);
         else
           return queryTag(node, queryStr);
       }

@@ -14,7 +14,7 @@
       var request,
           copy = this,
           items, tmp,
-          url;
+          url, key, paramStr;
       if (window.XMLHttpRequest)
         request = new XMLHttpRequest();
       else
@@ -29,7 +29,7 @@
             items.forEach(function (item) {
               copy.models.push(new copy.Model(item));
             });
-            callback.call(copy, null, copy);
+            callback.call(copy, null, tmp);
           }
           else
             callback.call(copy, request.response);
@@ -40,6 +40,14 @@
         url = copy.urlRoot + options.term + copy.format;
       else
         url = copy.urlRoot + copy.term + copy.format;
+      if (options.params) {
+        paramStr = [];
+        for (key in options.params) {
+          paramStr.push(key + "=" + options.params[key]);
+        }
+        url += "?" + paramStr.join("&");
+      }
+      console.log(url);
       request.open("GET", url, true);
       request.send();
     };
