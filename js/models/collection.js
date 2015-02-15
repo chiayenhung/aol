@@ -5,7 +5,7 @@
         options = {};
       this.models = [];
       this.urlRoot = options.urlRoot || 'http://api.5min.com/search/';
-      this.term = options.term || 'obama';
+      this.term = options.term || '';
       this.format = options.format || '/videos.json';
       this.Model = Model;
     }

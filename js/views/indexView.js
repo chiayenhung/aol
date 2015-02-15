@@ -13,7 +13,7 @@
       "<div class='form-inline control_bar'>",
       "<div class='form-group'>",
       "<label>Search Bar</label>",
-      "<input class='form-control' placeholder='default: obama'>",
+      "<input class='form-control' placeholder='search term'>",
       "</div>",
       "</div>",
       "<div class='videos_container'>",
@@ -85,6 +85,7 @@
 
       document.addEventListener("mousewheel", copy.scrollHandler.bind(copy));
       document.addEventListener("DOMMouseScroll", copy.scrollHandler.bind(copy));
+      document.addEventListener("touchmove", copy.scrollHandler.bind(copy));
     };
 
     IndexView.prototype.scrollHandler = function (e) {
