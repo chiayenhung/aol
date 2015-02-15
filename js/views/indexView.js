@@ -13,7 +13,7 @@
       "<div class='form-inline control_bar'>",
       "<div class='form-group'>",
       "<label>Search Bar</label>",
-      "<input class='form-control' placeholder='search term'>",
+      "<input class='form-control' placeholder='default: obama'>",
       "</div>",
       "</div>",
       "<div class='videos_container'>",
@@ -83,24 +83,28 @@
         }
       });
 
-      document.addEventListener("mousewheel", function (e) {
-        var textarea = MyQ.query("INPUT")[0],
-            options = {};
-        if (copy.videos.end)
-          return;
-        if (window.pageYOffset + window.innerHeight + 100 > document.body.scrollHeight) {
-          options.term = textarea.value;
-          copy.load(true);
-          copy.videos.lazyLoad(options, function (err, response) {
-            if (err)
-              console.log(err);
-            else {
-              copy.renderVideos(true);
-            }
-            copy.load(false);
-          });
-        }
-      });
+      document.addEventListener("mousewheel", copy.scrollHandler.bind(copy));
+      document.addEventListener("DOMMouseScroll", copy.scrollHandler.bind(copy));
+    };
+
+    IndexView.prototype.scrollHandler = function (e) {
+      var textarea = MyQ.query("INPUT")[0],
+          options = {},
+          copy = this;
+      if (copy.videos.end)
+        return;
+      if (window.pageYOffset + window.innerHeight + 100 > document.body.scrollHeight) {
+        options.term = textarea.value;
+        copy.load(true);
+        copy.videos.lazyLoad(options, function (err, response) {
+          if (err)
+            console.log(err);
+          else {
+            copy.renderVideos(true);
+          }
+          copy.load(false);
+        });
+      }
     };
 
     IndexView.prototype.load = function (loading) {
