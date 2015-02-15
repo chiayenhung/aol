@@ -73,6 +73,7 @@
                 console.error(err);
               else {
                 copy.renderVideos();
+                copy.videos.page += 1;
               }
               copy.load(false);
               if (copy.videos.models.length == 0)
@@ -85,6 +86,8 @@
       document.addEventListener("mousewheel", function (e) {
         var textarea = MyQ.query("INPUT")[0],
             options = {};
+        if (copy.videos.end)
+          return;
         if (window.pageYOffset + window.innerHeight + 100 > document.body.scrollHeight) {
           options.term = textarea.value;
           copy.load(true);
@@ -93,9 +96,6 @@
               console.log(err);
             else {
               copy.renderVideos(true);
-              if (response.items.length == 0)
-                copy.load(false);
-              console.log(response.items.length)
             }
             copy.load(false);
           });

@@ -3,7 +3,7 @@
     function Videos (options) {
       Collection.call(this, options);
       this.Model = Video;
-      this.page = 2;
+      this.page = 1;
       this.loading = false;
       this.end = false;
     }
@@ -14,7 +14,7 @@
     Videos.prototype.constructor = Videos;
 
     Videos.prototype.reset = function () {
-      this.page = 2;
+      this.page = 1;
       this.loading = false;
       this.end = false;
     };

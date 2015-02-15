@@ -47,7 +47,6 @@
         }
         url += "?" + paramStr.join("&");
       }
-      console.log(url);
       request.open("GET", url, true);
       request.send();
     };
